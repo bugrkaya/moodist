@@ -2,15 +2,15 @@
 
 module.exports = (app, db) => {
 
-    // GET all owners
+    // GET all doctors, denendi
     app.get('/doctor', (req, res) => {
         db.doctor.findAll()
-            .then(owners => {
-                res.json(owners);
+            .then(doctors => {
+                res.json(doctors);
             });
     });
 
-    // GET one owner by id
+    // GET one doctor by id, denendi
     app.get('/doctor/:id', (req, res) => {
         const id = req.params.id;
         db.doctor.find({
@@ -18,20 +18,22 @@ module.exports = (app, db) => {
                     id: id
                 }
             })
-            .then(owner => {
-                res.json(owner);
+            .then(doctor => {
+                res.json(doctor);
             });
     });
     
+    // POST a doctor, denendi
     app.post('/doctor', (req, res) => {
         db.doctor.create({
                 name: req.body.name,
             })
-            .then(newOwner => {
-                res.json(newOwner);
+            .then(doctor => {
+                res.json(doctor);
             })
     });
 
+    //POST DIKKAT
     app.post('/doctor/:id/patient/:patient_id/dikkat', (req, res) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
@@ -44,15 +46,18 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.dikkat.create({
-                    score: req.body.score,
+                    hata_orani: req.body.score,
+                    tepki_suresi: req.body.tepki_suresi,
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
-                .then(newOwner => {
-                    res.json(newOwner);
+                .then(score => {
+                    res.json(score);
                 })
         })
     });
+    
+    //POST DURTU
     app.post('/doctor/:id/patient/:patient_id/durtu', (req, res) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
@@ -65,15 +70,20 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.durtu.create({
-                    score: req.body.score,
+                    dogru_sayisi: req.body.dogru_sayisi,
+                    yanlis_sayisi: req.body.yanlis_sayisi,
+                    tepki_suresi: req.body.tepki_suresi,
+                    tusa_basis_sayisi: req.body.tusa_basis_sayisi,
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
-                .then(newOwner => {
-                    res.json(newOwner);
+                .then(score => {
+                    res.json(score);
                 })
         })
     });
+    
+    //POST HAFIZA
     app.post('/doctor/:id/patient/:patient_id/hafiza', (req, res) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
@@ -86,15 +96,18 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.hafiza.create({
-                    score: req.body.score,
+                    total_saniye: req.body.total_saniye,
+                    kacta_patladi: req.body.kacta_patladi,
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
-                .then(newOwner => {
-                    res.json(newOwner);
+                .then(score => {
+                    res.json(score);
                 })
         })
     });
+    
+    //POST RISK
     app.post('/doctor/:id/patient/:patient_id/risk', (req, res) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
@@ -107,17 +120,20 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.risk.create({
-                    score: req.body.score,
+                    ortalama_balon: req.body.ortalama_balon,
+                    balon_sisirme_sayisi: req.body.balon_sisirme_sayisi,
+                    patlayan_balon_sayisi: req.body.patlayan_balon_sayisi,
+                    balondan_sonra_gelen_balon: req.body.balondan_sonra_gelen_balon,
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
-                .then(newOwner => {
-                    res.json(newOwner);
+                .then(score => {
+                    res.json(score);
                 })
         })
     });
 
-    // DELETE single owner
+    // DELETE single doctor
     app.delete('/doctor/:id', (req, res) => {
         const id = req.params.id;
         db.doctor.destroy({
@@ -125,8 +141,8 @@ module.exports = (app, db) => {
                     id: id
                 }
             })
-            .then(deletedOwner => {
-                res.json(deletedOwner);
+            .then(doctor => {
+                res.json(doctor);
             });
     });
 
@@ -136,8 +152,8 @@ module.exports = (app, db) => {
                     doctor_id: req.params.id
                 }
             })
-            .then(pets => {
-                res.json(pets);
+            .then(patients => {
+                res.json(patients);
             });
     });
 
@@ -154,48 +170,26 @@ module.exports = (app, db) => {
             });
     });
 
-    // POST single pet
+    // POST single patient
     app.post('/doctor/:id/patient', (req, res) => {
         const name = req.body.name;
-        db.patient.create({
+        db.doctor.find({
+            where: {
+                id : req.params.id
+            }
+        }).then(doctor => (
+            db.patient.create({
                 name: name,
-                doctor_id: Number(req.params.id)
+                doctor_id: Number(req.params.id),
+                doctor_name: doctor.dataValues.name
             })
             .then(newPet => {
                 res.json(newPet);
-            });
-    });
-
-    // PATCH single pet
-    app.patch('/patient/:id', (req, res) => {
-        const id = req.params.id;
-        const updates = req.body.updates;
-        db.pets.find({
-                where: {
-                    id: id
-                }
             })
-            .then(pet => {
-                return pet.updateAttributes(updates);
-            })
-            .then(updatedPet => {
-                res.json(updatedPet);
-            });
-    });
-
-    app.delete('/pet/:id', (req, res) => {
-        const id = req.params.id;
-        db.pets.destroy({
-                where: {
-                    id: id
-                }
-            })
-            .then(deletedPet => {
-                res.json(deletedPet);
-            });
+        ))
     });
     
-    // PATCH single owner
+    // PATCH single doctor
     app.patch('/doctor/:id', (req, res) => {
         const id = req.params.id;
         const updates = req.body.updates;
@@ -207,8 +201,8 @@ module.exports = (app, db) => {
             .then(owner => {
                 return doctor.updateAttributes(updates)
             })
-            .then(updatedOwner => {
-                res.json(updatedOwner);
+            .then(deletedDoctor => {
+                res.json(deletedDoctor);
             });
     });
 

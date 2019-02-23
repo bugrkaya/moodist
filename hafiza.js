@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             required: true
         },
-        score: {
+        total_saniye: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        kacta_patladi: {
             type: DataTypes.FLOAT,
             required: true
         },

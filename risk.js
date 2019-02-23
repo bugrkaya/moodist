@@ -9,7 +9,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             required: true
         },
-        score: {
+        ortalama_balon: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        balon_sisirme_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        patlayan_balon_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        balondan_sonra_gelen_balon: {
             type: DataTypes.FLOAT,
             required: true
         },
