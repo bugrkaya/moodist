@@ -23,10 +23,34 @@ module.exports = (app, db) => {
             });
     });
     
+    app.post('/login', (req, res) => {
+        let user = {};
+        db.doctor.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            .then((loggedUser) => {
+                if (loggedUser === null) { //if a coach with the input email doesn't exist, throw 404 error
+                    res.sendStatus(404)
+                } else { // else the password is checked, if it's correct a coach token is generated
+                    user = loggedUser.dataValues;
+                    if (req.body.password != user.password) return res.status(401).send({
+                        message: "Password is not correct!"
+                    });
+                    else { 
+                        res.json(loggedUser);
+                    }
+                }
+            });
+    });
+    
     // POST a doctor, denendi
     app.post('/doctor', (req, res) => {
         db.doctor.create({
                 name: req.body.name,
+                email: req.body.email,
+                password: req.body.password
             })
             .then(doctor => {
                 res.json(doctor);
