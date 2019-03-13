@@ -6,7 +6,7 @@ module.exports = (app, db) => {
     app.get('/doctor', (req, res) => {
         db.doctor.findAll()
             .then(doctors => {
-                res.json(doctors);
+                return res.json(doctors);
             });
     });
 
@@ -19,10 +19,11 @@ module.exports = (app, db) => {
                 }
             })
             .then(doctor => {
-                res.json(doctor);
+                return res.json(doctor);
             });
     });
     
+    // POST login
     app.post('/login', (req, res) => {
         let user = {};
         db.doctor.findOne({
@@ -39,13 +40,13 @@ module.exports = (app, db) => {
                         message: "Password is not correct!"
                     });
                     else { 
-                        res.json(loggedUser);
+                        return res.json(loggedUser);
                     }
                 }
             });
     });
     
-    // POST a doctor, denendi
+    // POST a doctor
     app.post('/doctor', (req, res) => {
         db.doctor.create({
                 name: req.body.name,
@@ -53,7 +54,7 @@ module.exports = (app, db) => {
                 password: req.body.password
             })
             .then(doctor => {
-                res.json(doctor);
+                return res.json(doctor);
             })
     });
 
@@ -76,7 +77,7 @@ module.exports = (app, db) => {
                     patient_name: patient_name
                 })
                 .then(score => {
-                    res.json(score);
+                    return res.json(score);
                 })
         })
     });
@@ -102,7 +103,7 @@ module.exports = (app, db) => {
                     patient_name: patient_name
                 })
                 .then(score => {
-                    res.json(score);
+                    return res.json(score);
                 })
         })
     });
@@ -126,7 +127,7 @@ module.exports = (app, db) => {
                     patient_name: patient_name
                 })
                 .then(score => {
-                    res.json(score);
+                    return res.json(score);
                 })
         })
     });
@@ -152,7 +153,7 @@ module.exports = (app, db) => {
                     patient_name: patient_name
                 })
                 .then(score => {
-                    res.json(score);
+                    return res.json(score);
                 })
         })
     });
@@ -166,10 +167,25 @@ module.exports = (app, db) => {
                 }
             })
             .then(doctor => {
-                res.json(doctor);
+                return res.json(doctor);
             });
     });
-
+    
+    // DELETE single patient
+    app.delete('/doctor/:doctor_id/patient/:patient_id', (req, res) => {
+        const id = req.params.patient_id;
+        db.patient.destroy({
+                where: {
+                    doctor_id: req.params.doctor_id,
+                    id: id
+                }
+            })
+            .then(doctor => {
+                return res.json(doctor);
+            });
+    });
+    
+    // Get all patients
     app.get('doctor/:id/patients', (req, res) => {
         db.patient.findAll({
                 where: {
@@ -177,20 +193,21 @@ module.exports = (app, db) => {
                 }
             })
             .then(patients => {
-                res.json(patients);
+               return res.json(patients);
             });
     });
 
-    // GET one pet by id
+    // GET single patient
     app.get('doctor/:id/patient/:patient_id', (req, res) => {
         const id = req.params.patient_id;
         db.patient.find({
                 where: {
+                    doctor_id: req.params.id,
                     id: id
                 }
             })
             .then(pet => {
-                res.json(pet);
+                return res.json(pet);
             });
     });
 
@@ -208,7 +225,7 @@ module.exports = (app, db) => {
                 doctor_name: doctor.dataValues.name
             })
             .then(newPet => {
-                res.json(newPet);
+                return res.json(newPet);
             })
         ))
     });
@@ -226,7 +243,7 @@ module.exports = (app, db) => {
                 return doctor.updateAttributes(updates)
             })
             .then(deletedDoctor => {
-                res.json(deletedDoctor);
+                return res.json(deletedDoctor);
             });
     });
 
