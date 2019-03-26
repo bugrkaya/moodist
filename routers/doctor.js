@@ -186,7 +186,8 @@ module.exports = (app, db) => {
     });
     
     // Get all patients
-    app.get('doctor/:id/patients', (req, res) => {
+    app.get('/doctor/:id/patients', (req, res) => {
+        console.log('bugra')
         db.patient.findAll({
                 where: {
                     doctor_id: req.params.id
@@ -198,7 +199,7 @@ module.exports = (app, db) => {
     });
 
     // GET single patient
-    app.get('doctor/:id/patient/:patient_id', (req, res) => {
+    app.get('/doctor/:id/patient/:patient_id', (req, res) => {
         const id = req.params.patient_id;
         db.patient.find({
                 where: {
