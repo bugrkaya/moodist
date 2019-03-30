@@ -1,4 +1,15 @@
-'use strict';
+'use strict'
+
+function average(arr){
+    if (arr.length > 0 ){
+        var sum = 0
+        for (var i = 0; i < arr.length; i++){
+            sum += arr[i]
+        }
+        return sum / arr.length
+    }
+    else return 0
+}
 
 module.exports = (app, db) => {
 
@@ -70,9 +81,45 @@ module.exports = (app, db) => {
             }
         }).then(patient => {
             patient_name = patient.dataValues.name;
+
+            var results = req.body.results
+            var seqs = req.body.sequence
+            
+            var right_react = []
+            var wrong_react = []
+            
+            var total_a = 0
+            var total_not_a = 0
+            
+            for (var i = 0; i < results.length; i++) {
+                if (results[i].letter === 'A') {
+                    right_react.push(results[i].time)
+                }
+                else wrong_react.push(results[i].time)
+            }
+            
+            for (var i = 0; i < seqs.length; i++) {
+                if (seqs[i].letter === 'A') {
+                    total_a++
+                }
+                else total_not_a++
+            }
+            
+            console.log('\x1b[31m%s\x1b[0m', 'right_react: ' + right_react)
+            console.log('\x1b[32m%s\x1b[0m', 'wrong_react: ' + wrong_react)
+            console.log('\x1b[33m%s\x1b[0m', 'total_a: ' + total_a)
+            console.log('\x1b[34m%s\x1b[0m', 'total_not_a: ' + total_not_a)
+            console.log('\x1b[35m%s\x1b[0m', 'avg: ' + average(right_react).toFixed(2))
+            
+            
             db.dikkat.create({
-                    hata_orani: req.body.score,
-                    tepki_suresi: req.body.tepki_suresi,
+                    dogru_basis_sayisi: right_react.length, 
+                    yanlis_basis_sayisi: wrong_react.length, 
+                    total_a_sayisi: total_a,
+                    total_not_a_sayisi: total_not_a, 
+                    hata_orani: 1 - (right_react.length / total_a).toFixed(3),
+                    dogrularda_tepki_suresi_ort:  average(right_react).toFixed(2),
+                    yanlislarda_tepki_suresi_ort:  average(wrong_react).toFixed(2),
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
@@ -87,18 +134,53 @@ module.exports = (app, db) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
         var patient_name = ''
+        
+        console.log(req.body)
+        
+        var results = req.body.results
+        var seqs = req.body.sequence
+        
+        var right_react = []
+        var wrong_react = []
+
+        var total_true = 0
+        var total_false = 0
+        
+        for (var i = 0; i < results.length; i++) {
+            if (results[i].color === 'green' && results[i].shape === 'circle' && results[i].key === 'n') {
+                right_react.push(results[i].time)
+            }
+            else if (results[i].color === 'red' && results[i].shape === 'polygon' && results[i].key === 'c') {
+                right_react.push(results[i].time)
+            }
+            else wrong_react.push(results[i].time)
+        }
+
+        for (var i = 0; i < seqs.length; i++) {
+            if (seqs[i].color === 'green' && seqs[i].shape === 'circle' && seqs[i].key === 'n') {
+                total_true++
+            }
+            else total_false++
+        }
+        
         db.patient.find({
             where: {
                 id: patient_id,
                 doctor_id: doctor_id
             }
         }).then(patient => {
+            
+            console.log('bugra')
+            
             patient_name = patient.dataValues.name;
             db.durtu.create({
-                    dogru_sayisi: req.body.dogru_sayisi,
-                    yanlis_sayisi: req.body.yanlis_sayisi,
-                    tepki_suresi: req.body.tepki_suresi,
-                    tusa_basis_sayisi: req.body.tusa_basis_sayisi,
+                    dogru_basis_sayisi: right_react.length, 
+                    yanlis_basis_sayisi: wrong_react.length, 
+                    total_dogru_sayisi: total_true,
+                    total_yanlis_sayisi: total_false,
+                    hata_orani: 1 - (right_react.length / total_true).toFixed(3),
+                    dogrularda_tepki_suresi_ort:  average(right_react).toFixed(2),
+                    yanlislarda_tepki_suresi_ort:  average(wrong_react).toFixed(2),
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
@@ -113,6 +195,7 @@ module.exports = (app, db) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
         var patient_name = ''
+        
         db.patient.find({
             where: {
                 id: patient_id,
@@ -121,8 +204,8 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.hafiza.create({
-                    total_saniye: req.body.total_saniye,
-                    kacta_patladi: req.body.kacta_patladi,
+                    gelinen_seviye: req.body.result,
+                    tur: req.body.tur,
                     patient_id: patient_id,
                     patient_name: patient_name
                 })
@@ -137,6 +220,21 @@ module.exports = (app, db) => {
         const doctor_id = req.params.id
         const patient_id = req.params.patient_id
         var patient_name = ''
+
+        var results = req.body.results
+        var blown = 0
+        var total_clicks = 0
+        var total_limit = 0
+        var total_earining = 0
+        for (var i = 0; i < results.length; i++){
+            if (results[i].blowed == true){
+                blown++
+            }
+            total_clicks += results[i].clicks
+            total_limit += results[i].limit
+            total_earining += results[i].earning
+        }
+            
         db.patient.find({
             where: {
                 id: patient_id,
@@ -145,10 +243,11 @@ module.exports = (app, db) => {
         }).then(patient => {
             patient_name = patient.dataValues.name;
             db.risk.create({
-                    ortalama_balon: req.body.ortalama_balon,
-                    balon_sisirme_sayisi: req.body.balon_sisirme_sayisi,
-                    patlayan_balon_sayisi: req.body.patlayan_balon_sayisi,
-                    balondan_sonra_gelen_balon: req.body.balondan_sonra_gelen_balon,
+                    ortalama_balon_kazanc: total_earining / results.length,
+                    total_kazanc : total_earining, 
+                    ortalama_balon_sisirme_sayisi: (total_clicks / results.length).toFixed(2),
+                    patlayan_balon_sayisi: blown,
+                    risk_alma_katsayisi : (total_clicks / total_limit).toFixed(2),
                     patient_id: patient_id,
                     patient_name: patient_name
                 })

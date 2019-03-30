@@ -11,11 +11,31 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             required: true
         },
+        dogru_basis_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        yanlis_basis_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        total_a_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        total_not_a_sayisi: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
         hata_orani: {
             type: DataTypes.FLOAT,
             required: true
         },
-        tepki_suresi: {
+        dogrularda_tepki_suresi_ort: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        yanlislarda_tepki_suresi_ort: {
             type: DataTypes.FLOAT,
             required: true
         },

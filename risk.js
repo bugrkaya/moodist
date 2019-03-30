@@ -9,11 +9,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             required: true
         },
-        ortalama_balon: {
+        ortalama_balon_kazanc: {
             type: DataTypes.FLOAT,
             required: true
         },
-        balon_sisirme_sayisi: {
+        total_kazanc: {
+            type: DataTypes.FLOAT,
+            required: true
+        },
+        ortalama_balon_sisirme_sayisi: {
             type: DataTypes.FLOAT,
             required: true
         },
@@ -21,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             required: true
         },
-        balondan_sonra_gelen_balon: {
+        risk_alma_katsayisi: {
             type: DataTypes.FLOAT,
             required: true
         },
