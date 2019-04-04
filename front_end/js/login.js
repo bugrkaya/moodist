@@ -16,7 +16,7 @@ function logi() {
       localStorage.clear();
       localStorage.setItem("doctorid", response.id);
       localStorage.setItem("doctorname", response.name);
-      // window.location = "./patients.html";
+      window.location = "./patients.html";
     })
     .catch(error => console.error("Error:", error));
 }
