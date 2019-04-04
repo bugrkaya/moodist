@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Dürtüsellik Testi</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <div class="section no-pad-bot" id="intro">
+      <div class="container">
+        <br /><br />
+        <h1 class="header center">Dürtüsellik Testi</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+            Bu test esnasında size bazı şekiller gösterilecektir. Yaklaşık 15
+            dakika kadar sürecek olan bu testte,
+            <strong
+              >kırmızı ücgen gördüğünüzde "C", yeşil daire gördüğünüzde "N"
+              tuşuna yalnızca bir kez basınız.</strong
+            >
+          </h5>
+
+          <br />
+          <br />
+        </div>
+        <div class="row center">
+          <a onclick="randomImage()" class="btn-large waves-effect waves-light"
+            >BAŞLA</a
+          >
+        </div>
+        <br /><br />
+      </div>
+    </div>
+    <div class="container">
+      <div class="row center">
+        <br />
+        <img
+          id="star"
+          class="materialboxed hidden"
+          src="images/star.jpg"
+          width="250px"
+          height="250px"
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <svg class="hidden image" height="200" width="200">
+          <circle
+            cx="100"
+            cy="100"
+            r="95"
+            stroke="black"
+            stroke-width="3"
+            fill="green"
+          />
+        </svg>
+        <svg class="hidden image" height="200" width="200">
+          <circle
+            cx="100"
+            cy="100"
+            r="95"
+            stroke="black"
+            stroke-width="3"
+            fill="red"
+          />
+        </svg>
+        <svg class="hidden image" height="200" width="200">
+          <circle
+            cx="100"
+            cy="100"
+            r="95"
+            stroke="black"
+            stroke-width="3"
+            fill="white"
+          />
+        </svg>
+        <svg class="hidden image" height="210" width="210">
+          <polygon
+            points="105,5 5,200 205,200"
+            style="stroke:black;stroke-width:3"
+            fill="green"
+          />
+        </svg>
+        <svg class="hidden image" height="210" width="210">
+          <polygon
+            points="105,5 5,200 205,200"
+            style="stroke:black;stroke-width:3"
+            fill="red"
+          />
+        </svg>
+        <svg class="hidden image" height="210" width="210">
+          <polygon
+            points="105,5 5,200 205,200"
+            style="stroke:black;stroke-width:3"
+            fill="white"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="container hidden" id="outro">
+      <div class="row center">
+        <h5 class="header col s12 light">
+          Test başarı ile tamamlanmıştır. Test menüsüne dönmek için lütfen
+          tıklayınız.
+        </h5>
+        <a href="./index.html" class="btn-large waves-effect waves-light"
+          >TEST MENÜSÜ</a
+        >
+      </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/durtu.js"></script>
+  </body>
+</html>

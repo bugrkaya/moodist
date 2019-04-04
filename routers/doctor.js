@@ -36,6 +36,7 @@ module.exports = (app, db) => {
     // POST login
     app.post('/login', (req, res) => {
         let user = {};
+        console.log(req.body)
         db.doctor.findOne({
                 where: {
                     email: req.body.email
@@ -173,8 +174,6 @@ module.exports = (app, db) => {
             }
         }).then(patient => {
 
-            console.log('bugra')
-
             patient_name = patient.dataValues.name;
             db.durtu.create({
                     dogru_basis_sayisi: right_react.length,
@@ -289,7 +288,6 @@ module.exports = (app, db) => {
 
     // Get all patients
     app.get('/doctor/:id/patients', (req, res) => {
-        console.log('bugra')
         db.patient.findAll({
                 where: {
                     doctor_id: req.params.id
