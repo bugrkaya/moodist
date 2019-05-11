@@ -80,12 +80,14 @@ module.exports = (app, db) => {
                 doctor_id: doctor_id
             }
         }).then(patient => {
+            console.log(req.body)
             patient_name = patient.dataValues.name;
 
             var results = req.body.results
             var seqs = req.body.sequence
 
             var right_react = []
+            var right_index = []
             var wrong_react = []
 
             var total_a = 0
@@ -94,6 +96,7 @@ module.exports = (app, db) => {
             for (var i = 0; i < results.length; i++) {
                 if (results[i].letter === 'A') {
                     right_react.push(results[i].time)
+                    right_index.push(results[i].index)
                 } else wrong_react.push(results[i].time)
             }
 
@@ -102,20 +105,21 @@ module.exports = (app, db) => {
                     total_a++
                 } else total_not_a++
             }
-
-            console.log('\x1b[31m%s\x1b[0m', 'right_react: ' + right_react)
+            
+            let unique_right = [...new Set(right_index)];
+            console.log('\x1b[31m%s\x1b[0m', 'right_react: ' + unique_right)
             console.log('\x1b[32m%s\x1b[0m', 'wrong_react: ' + wrong_react)
             console.log('\x1b[33m%s\x1b[0m', 'total_a: ' + total_a)
             console.log('\x1b[34m%s\x1b[0m', 'total_not_a: ' + total_not_a)
             console.log('\x1b[35m%s\x1b[0m', 'avg: ' + average(right_react).toFixed(2))
 
-
+            
             db.dikkat.create({
-                    dogru_basis_sayisi: right_react.length,
+                    dogru_basis_sayisi: unique_right.length,
                     yanlis_basis_sayisi: wrong_react.length,
                     total_a_sayisi: total_a,
                     total_not_a_sayisi: total_not_a,
-                    hata_orani: 1 - (right_react.length / total_a).toFixed(3),
+                    hata_orani: 1 - (unique_right.length / total_a).toFixed(3),
                     dogrularda_tepki_suresi_ort: average(right_react).toFixed(2),
                     yanlislarda_tepki_suresi_ort: average(wrong_react).toFixed(2),
                     patient_id: patient_id,
@@ -146,26 +150,34 @@ module.exports = (app, db) => {
         var seqs = req.body.sequence
 
         var right_react = []
+        var right_index = []
         var wrong_react = []
 
         var total_true = 0
         var total_false = 0
-
+        
+        
         for (var i = 0; i < results.length; i++) {
             if (results[i].color === 'green' && results[i].shape === 'circle' && results[i].key === 'n') {
                 right_react.push(results[i].time)
+                right_index.push(results[i].index)
             } else if (results[i].color === 'red' && results[i].shape === 'polygon' && results[i].key === 'c') {
                 right_react.push(results[i].time)
+                right_index.push(results[i].index)
             } else wrong_react.push(results[i].time)
         }
 
         for (var i = 0; i < seqs.length; i++) {
-            if (seqs[i].color === 'green' && seqs[i].shape === 'circle' && seqs[i].key === 'n') {
+            if (seqs[i].color === 'green' && seqs[i].shape === 'circle') {
                 total_true++
-            } else if (seqs[i].color === 'red' && seqs[i].shape === 'polygon' && seqs[i].key === 'c') {
-                right_react.push(results[i].time)
+            } else if (seqs[i].color === 'red' && seqs[i].shape === 'polygon') {
+                total_true++
             } else total_false++
         }
+        
+//        console.log('\x1b[31m%s\x1b[0m', 'right_index: ' + right_index)
+        let unique_right = [...new Set(right_index)];
+//        console.log('\x1b[32m%s\x1b[0m', 'unique: ' + (1 - (unique_right.length / total_true).toFixed(3)))
 
         db.patient.find({
             where: {
@@ -173,14 +185,13 @@ module.exports = (app, db) => {
                 doctor_id: doctor_id
             }
         }).then(patient => {
-
             patient_name = patient.dataValues.name;
             db.durtu.create({
-                    dogru_basis_sayisi: right_react.length,
+                    dogru_basis_sayisi: unique_right.length,
                     yanlis_basis_sayisi: wrong_react.length,
                     total_dogru_sayisi: total_true,
                     total_yanlis_sayisi: total_false,
-                    hata_orani: 1 - (right_react.length / total_true).toFixed(3),
+                    hata_orani: 1 - (unique_right.length / total_true).toFixed(3),
                     dogrularda_tepki_suresi_ort: average(right_react).toFixed(2),
                     yanlislarda_tepki_suresi_ort: average(wrong_react).toFixed(2),
                     patient_id: patient_id,

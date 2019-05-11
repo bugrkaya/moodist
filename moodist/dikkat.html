@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Dikkat Testi</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <div class="section no-pad-bot" id="intro">
+      <div class="container">
+        <br /><br />
+        <h1 class="header center">Dikkat Testi</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+            Test esnasında size bazı harfler, resimler ve sesler sunulacaktır.
+            Yaklaşık 13 dakika kadar süren bu testte,
+            <strong
+              >"X" harfinden sonra "A" harfini gördüğünüzde boşluk tuşuna
+              yalnızca bir kez basınız.</strong
+            >
+          </h5>
+          <br />
+          <br />
+        </div>
+        <div class="row center">
+          <a onclick="randomLetter()" class="btn-large waves-effect waves-light"
+            >TESTE BAŞLAYIN</a
+          >
+        </div>
+        <br /><br />
+      </div>
+    </div>
+    <div class="container center">
+        <table id= "table1" class = "centered hidden" style="text-align : right;" >
+          <tr height = "33%">
+              <td id = "A1" width ="33%" >
+                <img
+                  id="gorselA1"
+                  class="materialboxed hidden"
+                  src="images/ambulance.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA1"
+                  class="materialboxed hidden"
+                  src="images/coke.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA1"
+                  class="materialboxed hidden"
+                  src="images/dog.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA1"
+                  class="materialboxed hidden"
+                  src="images/laugh.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA1"
+                  class="materialboxed hidden"
+                  src="images/matches.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+              </td>
+              <td id = "A2" width ="33%" class = "center">
+                <img
+                  id="gorselA2"
+                  class="materialboxed hidden"
+                  src="images/ambulance.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA2"
+                  class="materialboxed hidden"
+                  src="images/coke.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA2"
+                  class="materialboxed hidden"
+                  src="images/dog.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA2"
+                  class="materialboxed hidden"
+                  src="images/laugh.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA2"
+                  class="materialboxed hidden"
+                  src="images/matches.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+              </td>
+              <td id = "A3" width ="33%" class = "center">
+                <img
+                  id="gorselA3"
+                  class="materialboxed hidden"
+                  src="images/ambulance.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA3"
+                  class="materialboxed hidden"
+                  src="images/coke.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA3"
+                  class="materialboxed hidden"
+                  src="images/dog.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA3"
+                  class="materialboxed hidden"
+                  src="images/laugh.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+                <img
+                  id="gorselA3"
+                  class="materialboxed hidden"
+                  src="images/matches.jpg"
+                  width="100%"
+                  height="inherit"
+                  style="margin-left: auto;
+                         margin-right: auto;"
+                />
+              </td>
+          </tr>
+          <tr height = "33%">
+            <td id = "B1" width ="33%">
+              <img
+                id="gorselB1"
+                class="materialboxed hidden"
+                src="images/ambulance.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB1"
+                class="materialboxed hidden"
+                src="images/coke.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB1"
+                class="materialboxed hidden"
+                src="images/dog.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB1"
+                class="materialboxed hidden"
+                src="images/laugh.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB1"
+                class="materialboxed hidden"
+                src="images/matches.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+            </td>
+            <td id = "B2" class="testLetter  centered" width ="33%">
+                A
+            </td>
+            <td id = "B3" width ="33%">
+              <img
+                id="gorselB3"
+                class="materialboxed hidden"
+                src="images/ambulance.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB3"
+                class="materialboxed hidden"
+                src="images/coke.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB3"
+                class="materialboxed hidden"
+                src="images/dog.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB3"
+                class="materialboxed hidden"
+                src="images/laugh.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselB3"
+                class="materialboxed hidden"
+                src="images/matches.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+            </td>
+          </tr>
+          <tr height = "33%">
+            <td id = "C1" width ="33%">
+              <img
+                id="gorselC1"
+                class="materialboxed hidden"
+                src="images/ambulance.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC1"
+                class="materialboxed hidden"
+                src="images/coke.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC1"
+                class="materialboxed hidden"
+                src="images/dog.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC1"
+                class="materialboxed hidden"
+                src="images/laugh.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC1"
+                class="materialboxed hidden"
+                src="images/matches.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+            </td>
+            <td id = "C2" width ="33%">
+              <img
+                id="gorselC2"
+                class="materialboxed hidden "
+                src="images/ambulance.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC2"
+                class="materialboxed hidden"
+                src="images/coke.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC2"
+                class="materialboxed hidden"
+                src="images/dog.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC2"
+                class="materialboxed hidden"
+                src="images/laugh.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC2"
+                class="materialboxed hidden"
+                src="images/matches.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+            </td>
+            <td id = "C3" width ="33%">
+              <img
+                id="gorselC3"
+                class="materialboxed hidden"
+                src="images/ambulance.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC3"
+                class="materialboxed hidden"
+                src="images/coke.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC3"
+                class="materialboxed hidden"
+                src="images/dog.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC3"
+                class="materialboxed hidden"
+                src="images/laugh.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+              <img
+                id="gorselC3"
+                class="materialboxed hidden"
+                src="images/matches.jpg"
+                width="100%"
+                height="inherit"
+                style="margin-left: auto;
+                       margin-right: auto;"
+              />
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div class="container hidden" id="outro">
+      <div class="row center">
+        <br /><br /><br />
+        <h5 class="header col s12 light">
+          Test başarı ile tamamlandı. Test menüsüne dönmek için lütfen
+          tıklayınız.
+        </h5>
+        <a href="./index.html" class="btn-large waves-effect waves-light"
+          >TEST MENÜSÜ</a
+        >
+      </div>
+    </div>
+    <!--  Audios-->
+    <audio id="sound" src="./sounds/ambulance.mp3"></audio>
+    <audio id="sound" src="./sounds/coke.mp3"></audio>
+    <audio id="sound" src="./sounds/dog.wav"></audio>
+    <audio id="sound" src="./sounds/laugh.wav"></audio>
+    <audio id="sound" src="./sounds/match.wav"></audio>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/dikkat.js"></script>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Görsel Hafıza Testi</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <div class="section no-pad-bot" id="intro">
+      <div class="container">
+        <br /><br />
+        <h1 class="header center">Görsel Hafıza Testi</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+            Ekranda size bazı rakamlar gösterilecektir. Lütfen gösterilen rakamları teker teker aklınızda tutmaya çalışın. Ardından çıkan sayı ekranına hatırladığınız rakamları tuşlayınız.
+Bir kez tuşlama yaptığınızda, işlemi geri alma olanağınız yoktur.
+          </h5>
+          <br />
+          <br />
+        </div>
+        <div class="row center">
+          <a onclick="gorselTest()" class="btn-large waves-effect waves-light"
+            >TESTE BAŞLAMAK İÇİN TIKLAYINIZ.</a
+          >
+        </div>
+        <br /><br />
+      </div>
+    </div>
+    <div class="container">
+      <div class="row center">
+        <p class="hidden testLetter"></p>
+
+        <h5 class="hidden errorMsg header col s12 light">
+          Rakamları hatalı tuşladınız, lütfen tekrar deneyiniz.
+        </h5>
+        <div class="pad hidden">
+          <h5 class="header col s12 light">
+            Görmüş olduğunuz rakamları sırasıyla tuşlayın.
+          </h5>
+          <table style="width : 100%">
+            <thead>
+              <tr>
+                <th onclick="inputDigit(1)"><h3 class="padnumber center p1">1</h3></th>
+                <th onclick="inputDigit(2)"><h3 class="padnumber center p2">2</h3></th>
+                <th onclick="inputDigit(3)"><h3 class="padnumber center p3">3</h3></th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th onclick="inputDigit(4)"><h3 class="padnumber center p4">4</h3></th>
+                <th onclick="inputDigit(5)"><h3 class="padnumber center p5">5</h3></th>
+                <th onclick="inputDigit(6)"><h3 class="padnumber center p6">6</h3></th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th onclick="inputDigit(7)"><h3 class="padnumber center p7">7</h3></th>
+                <th onclick="inputDigit(8)"><h3 class="padnumber center p8">8</h3></th>
+                <th onclick="inputDigit(9)"><h3 class="padnumber center p9">9</h3></th>
+              </tr>
+            </thead>
+          </table>
+          <svg id="cCheckPoint" class="image" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+          <svg id="cCheckPoint" class="image hidden" height="80" width="80">
+            <circle
+              id="clickcheck"
+              cx="40"
+              cy="40"
+              r="19"
+              stroke="black"
+              stroke-width="3"
+              fill="white"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="container hidden" id="outro">
+      <div class="row center">
+        <h5 class="header col s12 light">
+          Test başarı ile tamamlanmıştır. Test menüsüne dönmek için lütfen tıklayınız.
+        </h5>
+        <a href="./index.html" class="btn-large waves-effect waves-light"
+          >TEST MENÜSÜ</a
+        >
+      </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/hafiza-gorsel.js"></script>
+  </body>
+</html>
