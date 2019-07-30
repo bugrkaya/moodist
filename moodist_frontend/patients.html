@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Katılımcılar</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <img
+      class="materialboxed putUR"
+      src="images/alogo.png"
+      width="100px"
+      height="100px"
+      style="transform: translate(-50%, -50%);
+      position: absolute;
+      top: 10%;
+      right: 10%;"
+    />
+    <div class="section no-pad-bot" id="intro">
+      <div class="container">
+        <br /><br />
+        <h1 class="header center">Katılımcılar</h1>
+        <div class="row">
+          <ul class="collection">
+
+          </ul>
+          <div class="col s12">
+            Yeni Katılımcı Ekle
+            <div class="input-field inline">
+              <input id="text_inline" type="text" class="validate" />
+              <label for="text_inline">İsim</label>
+          </div>
+          <a onclick="hekle()" class="waves-effect waves-light btn">Ekle</a>
+        </div>
+        <div class="col 12">
+            <a onclick="logout()" class="red waves-effect waves-light btn">Çıkış</a>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/patients.js"></script>
+  </body>
+</html>

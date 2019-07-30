@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Risk Alma Testi</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <div class="section no-pad-bot" id="intro">
+      <div class="container">
+        <img
+          class="materialboxed putUR"
+          src="images/alogo.png"
+          width="100px"
+          height="100px"
+          style="transform: translate(-50%, -50%);
+          position: absolute;
+          top: 10%;
+          right: 10%;"
+        />
+        <br /><br />
+        <h1 class="header center">Risk Alma Testi</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+            Ekranda çıkan her balonu "Balonu Pompala" yazılı tuşa tıklayarak patlatmadan dikkatlice şişirmeniz gerekmektedir.
+          </h5>
+          <h5 class="header col s12 light">
+            Balonu patlatmadan her şişirişinizde 5 puan kazanacaksınız.
+          </h5>
+          <h5 class="header col s12 light">
+            Balon patladığında balondan kazandığınız puanları alamayacaksınız.
+          </h5>
+          <h5 class="header col s12 light">
+          Testin herhangi bir noktasında "Dur ve Biriken Puanları Topla" tuşuna
+          tıklayarak kazanmış olduğunuz puanları toplayabilirsiniz.
+          </h5>
+          <h5 class="header col s12 light">
+            Teste başlamadan önce kısa bir deneme yapılacaktır.
+          </h5>
+          <h5 class="header col s12 light">
+            Lütfen hoperlörünüzün açık olduğundan emin olunuz.
+          </h5>
+          <br />
+          </div>
+          <div class="row center">
+            <a onclick="startTest()" class="btn-large waves-effect waves-light"
+              >DENEME YAPMAK İÇİN TIKLAYIN</a
+            >
+          </div>
+          <br /><br />
+        </div>
+      </div>
+    <div class="container centered">
+      <div id="balon" class="hidden">
+        <table style="width:100%;height : 100%">
+          <tr>
+              <td class="bottom" colspan="3" style="padding-bottom: 0px" height = "250px">
+                <img
+                  id="gorselBalon"
+                  style="margin-left: auto; margin-right: auto;"
+                  class="materialboxed"
+                  src="images/blue.jpg"
+                  width="50px"
+                />
+              </td>
+          </tr>
+          <tr height = "250px">
+            <td width = "33%" class="center">
+                <h4 class="header strong">
+                  TOPLAM KAZANÇ
+                </h4>
+                <p class="testDigit">0</p>
+
+            </td>
+              <td class="center" width = "33%" style="padding-top: 0px;">
+                <img
+                  id="pump"
+                  class="materialboxed row "
+                  src="images/pompa.jpg"
+                  width="150px"
+                  height="250px"
+                />
+              </td>
+            <td width = "33%" class="center">
+              <div class="col l6 m6 s12">
+                <h4 class="header strong">
+                  SON BALON
+                </h4>
+                <p class="lastBalon">0</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="center" width = "33%">
+              <a onclick="collect()" class="btn-large waves-effect waves-light"
+                >DUR VE BİRİKEN PUANLARI TOPLA</a>
+            </td>
+            <td class="center" width = "33%">
+              <a id="pumpBtn" onclick="increaseSize()" class="btn-large waves-effect waves-light"
+                >BALONU ŞİŞİR</a>
+            </td>
+          </tr>
+          </table>
+      </div>
+
+
+    <div class="container hidden" id="outro">
+      <div class="row center">
+        <br /><br /><br /><br /><br />
+        <h5 class="header col s12 light">
+          Deneme Sürümü tamamlandı.
+        </h5>
+        <a href="./risk.html" class="btn-large waves-effect waves-light"
+          >TESTE BAŞLAMAK İÇİN TIKLAYIN</a
+        >
+      </div>
+    </div>
+    <!--  Audios-->
+    <audio id="sound" src="./sounds/pop.mp3"></audio>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/risk-deneme.js"></script>
+  </body>
+</html>
